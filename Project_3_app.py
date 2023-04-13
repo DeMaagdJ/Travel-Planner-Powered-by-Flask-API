@@ -1,8 +1,10 @@
 from flask import Flask, render_template
 import sqlite3
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app, resources={r"{r"/api/*": ": {"origins": ["http://localhost:8001"]}})
 
 def get_db():
     conn = sqlite3.connect("/Users/Justin/Documents/Bootcamp_Home folder/Project_3_JD/project3.db")
@@ -29,7 +31,7 @@ def hotel():
     cursor.execute(sql)
     result= [dict(row) for row in cursor.fetchall()]
     conn.close()
-    return result
+    return render_template("index.html", result=result)
 
 
 
