@@ -4,9 +4,6 @@
 
 Elisangela is going to Chicago in July 2023, so we decided to help her planning her vacation. 
 
-## Link to the Dashboard
-
-
 ## Functionality
 
 
@@ -47,6 +44,10 @@ Created by:
 * https://flask.palletsprojects.com/en/2.2.x/
 * https://www.tripadvisor.com/HotelsNear-g35805-qORD-Chicago_Illinois.html'
 * https://leafletjs.com/reference.html#divicon-option
+* https://python-web.teclado.com/section07/lectures/06_jinja2_conditional_statements/
+* https://www.studytonight.com/python-howtos/how-to-check-if-a-variable-exists-in-python
+* https://www.programiz.com/python-programming/if-elif-else
+
 
 
 ## Screenshots

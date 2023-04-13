@@ -1,55 +1,39 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 import sqlite3
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-import datetime
+from flask_cors import CORS
 
-conn = sqlite3.connect("./project3.db")
-conn.row_factory = sqlite3.Row
-
-#QUERY HOTEL DATA
-cur = conn.cursor()
-cur.execute("SELECT Name, Lattitude, Longitude FROM hotels_geo")
-Hotel = cur.fetchall()
-
-#QUERY AIRLINE DATA
-cur2 = conn.cursor()
-cur2.execute("SELECT Departure, Airline, Price FROM tickets")
-Airline = cur2.fetchall()
-
-#CODE DOES NOT WORK!
-#cur3 = conn.cursor()
-#cur3.execute("SELECT time, tvag_farh FROM meteostat_data" )
-#time = []
-#tvag_farh = []
-#for row in cur.fetchall():
-    #time.append(row[0])
-    #tvag_farh.append(row[1])
-    
-# CORS(app, resources={r"/*": {"origins": ["http://localhost:8001"]}})
 
 app = Flask(__name__)
+# CORS(app, resources={r"/*": {"origins": ["http://localhost:8001"]}})
 
-@app.route('/')
-@app.route('/index.html')
-def hotel():
-    return render_template('index.html', Hotel=Hotel, Airline= Airline)
+def get_db():
+    conn = sqlite3.connect("./project3.db")
+    conn.row_factory = sqlite3.Row
+    return conn
 
-#DO NOT UNHASH....CODE CAUSES APP TO CRASH
-#@app.route('/graph')
-#def graph():
-    
-   
-    #plt.plot_date(time, tvag_farh)   
-    #plt.title("Historical Temperature")
-    #plt.show()
+@app.route('/', methods=['GET', 'POST'])
+def base():
+    hotels = get_hotels()
+    tickets = get_tickets()
+    return render_template("index.html", hotels=hotels, tickets=tickets)
 
+def get_hotels():
+    sql ="SELECT * FROM hotels_geo"
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    result= [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return result
 
-
-
-
-
+def get_tickets():
+    sql ="SELECT * FROM tickets"
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    result= [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return result
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug = True, port=8001)

@@ -123,102 +123,60 @@
   <div class="container bg-white">
     <div class="row d-flex">
       <h2 class="mb-3 text-dark col col1 col-lg col-md-12 col-sm-6 col-12"
-        style="font-size:xx-large;font-weight: bolder;max-width: 18rem;" id="titleText">Flights</h2>
+        style="font-size:xx-large;font-weight: bolder;max-width: 50rem;" id="titleText">Flights from PDX</h2>
     </div>
-    <div class="row d-flex text-dark">
-      <div class="col-1 col-sm-4">From: <input type="text"/></div>
-      <div class="col-2 col-sm-4">Departure: <input type="date"/></div>
-      <div class="col-3 col-sm-4">Return: <input type="date"/></div>
-    </div>
-    <div class="row d-flex justify-content-center">
-      <div class="card text-dark mb-3 col col1 col-lg col-md-12 col-sm-6 col-12 p-2" style="max-width: 18rem;">
-        <div id="flight-price1" class="card-header text-dark"></div>
-        <div class="card-body">
-          <p id="flight-company1" class="card-text text-dark"></p>
-          <p id="flight-details1" class="card-text text-dark"><label for = "Flight Name"> Choose a Flight/Departure/Price:</label>
-        <select name="flightdata" id = 'flightdata'>
-          {% for row in Airline %}
-              <option data_airline = "{{row.Airline}}", data-depart = "{{row.Departure}}", 
-                      data-price = "{{row.Price}}"> {{row.Airline}}, {{row.Departure}}, {{row.Price}} </option>
+
+    <div class="row d-flex justify-content-right" style="max-width: 80%">
+      <div class="card text-dark mb-3 col col1 col-lg col-md-12 col-sm-6 col-12 p-2">
+        <label for="Flights">Choose a flight:</label>
+        <select name="ticketdata" id='ticketdata'>
+          {% for row in tickets %}
+          <option dataAirline="{{row.Airline}}" , dataDepart="{{row.Departure}}" , dataPrice="{{row.Price}}">
+            {{row.Airline}}, {{row.Departure}}, {{row.Price}}
+          </option>
           {% endfor %}
         </select>
       </div>
-      </div>
-
-      <div class="card text-dark mb-3 col col2 col-lg col-md-12 col-sm-6 col-12" style="max-width: 18rem;">
-        <div id="flight-price2" class="card-header text-dark"></div>
-        <div class="card-body">
-          <p id="flight-company2" class="card-text text-dark"></p>
-          <p id="flight-details2" class="card-text text-dark">{{ tickets[0] }}</p>
-        </div>
-      </div>
-
-      <div class="card text-dark mb-3 col col3 col-lg col-md-12 col-sm-6 col-12" style="max-width: 18rem;">
-        <div id="flight-price3" class="card-header text-dark"></div>
-        <div class="card-body">
-          <p id="flight-company3" class="card-text text-dark"></p>
-          <p id="flight-details3" class="card-text text-dark">{{ tickets[0] }}</p>
-        </div>
-      </div>
-
-      <div class="card text-dark mb-3 col col4 col-lg col-md-12 col-sm-6 col-12" style="max-width: 18rem;">
-        <div id="flight-price4" class="card-header text-dark"></div>
-        <div class="card-body">
-          <p id="flight-company4" class="card-text text-dark"></p>
-          <p id="flight-details4" class="card-text text-dark">{{ tickets[0] }}</p>
-        </div>
-      </div>
-
-      <div class="card text-dark mb-3 col col5 col-lg col-md-12 col-sm-6 col-12" style="max-width: 18rem;">
-        <div id="flight-price5" class="card-header text-dark"></div>
-        <div class="card-body">
-          <p id="flight-company5" class="card-text text-dark"></p>
-          <p id="flight-details5" class="card-text text-dark">{{ tickets[0] }}</p>
-        </div>
-      </div>
     </div>
   </div>
+
 
   <!-- Hotels -->
   <div class="container bg-white">
     <div class="row d-flex">
       <h2 class="mb-3 text-dark col col1 col-lg col-md-12 col-sm-6 col-12"
-        style="font-size:xx-large;font-weight: bolder;max-width: 18rem;" id="titleText">Hotels</h2>
+        style="font-size:xx-large;font-weight: bolder;max-width: 50rem;" id="titleText">Hotels</h2>
     </div>
-    <div class="row d-flex justify-content-right">
+    <div class="row d-flex justify-content-right" style="max-width: 80%">
       <div class="card text-dark mb-3 col col1 col-lg col-md-12 col-sm-6 col-12 p-2">
-        <label for="Hotel Name"> Choose a hotel:</label>
+        <label for="Hotel Name">Choose a hotel:</label>
         <select name="hoteldata" id='hoteldata'>
-               <select name="hoteldata" id = 'hoteldata'>
-          {% for row in Hotel %}
-              <option name = "{{row.Name}}", row_lat = "{{row.Lattitude}}", row_lon ="{{row.Longitude}}"  
-              selected = "selected"> {{row.Name}}</option>
+          {% for row in hotels %}
+          <option hotelName="{{row.Name}}" , hotelAddress="{{row.Address}}">
+            {{row.Name}}, {{row.Address}}
+          </option>
           {% endfor %}
         </select>
-
-        <div id="hotel-rating2" class="card-header text-dark"></div>
-        <div class="card-body">
-          <p id="hotel-name2" class="card-text text-dark"></p>
-          <p id="hotel-address2" class="card-text text-dark"></p>
-        </div>
       </div>
+    </div>
+  </div>
 
 
 
-      <!-- Attractions -->
-      <div class="container bg-white">
-        <div class="row d-flex">
-          <h2 class="mb-3 text-dark col col1 col-lg col-md-12 col-sm-6 col-12"
-            style="font-size:xx-large;font-weight: bolder;max-width: 18rem;" id="titleText">Attractions</h2>
-        </div>
-        <div id="poi_map"></div>
-      </div>
+  <!-- Attractions -->
+  <div class="container bg-white">
+    <div class="row d-flex">
+      <h2 class="mb-3 text-dark col col1 col-lg col-md-12 col-sm-6 col-12"
+        style="font-size:xx-large;font-weight: bolder;max-width: 18rem;" id="titleText">Attractions</h2>
+    </div>
+    <div id="poi_map"></div>
+  </div>
 
 
-      <!-- Our JavaScript dile -->
-      <script type="text/javascript" src="{{ url_for('static', filename='js/logic_dynamic_POI.js' ) }}"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-      <script src="{{ url_for('static', filename='/js/search-result.js' ) }}"></script>
+  <!-- Our JavaScript dile -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/logic_dynamic_POI.js' ) }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="{{ url_for('static', filename='/js/search-result.js' ) }}"></script>
 </body>
 
 </html>
