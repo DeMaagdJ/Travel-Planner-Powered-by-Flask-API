@@ -5,7 +5,7 @@ import sqlite3
 app = Flask(__name__)
 
 def get_db():
-    conn = sqlite3.connect('project3.db')
+    conn = sqlite3.connect("/Users/Justin/Documents/Bootcamp_Home folder/Project_3_JD/project3.db")
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -13,13 +13,25 @@ def get_db():
 @app.route('/')
 @app.route('/index')
 def index():
-    sql ="SELECT Name FROM hotels_geo"
+    sql ="SELECT Departure FROM tickets"
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute(sql)
     result= [dict(row) for row in cursor.fetchall()]
     conn.close()
     return result
+
+@app.route('/hotel_loc')
+def hotel():
+    sql ="SELECT * FROM hotels_geo"
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    result= [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return result
+
+
 
 
 
