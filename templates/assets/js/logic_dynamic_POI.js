@@ -56,6 +56,12 @@ function createMap(pointsOfInterest) {
   }
   
   function findCity(response) {
+    
+    //Code to parse hotel bias lattitude and longitude
+    var b = document.getElementById('hoteldata')
+    var lat = b.value;
+    console.log(lat)
+    
 
     //use response to find city coordinates
     cityLat = response["results"][0]["lat"]
