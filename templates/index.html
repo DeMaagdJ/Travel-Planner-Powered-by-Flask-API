@@ -180,7 +180,7 @@
         <label for = "Hotel Name"> Choose a hotel:</label>
         <select name="hoteldata" id = 'hoteldata'>
           {% for row in Hotel %}
-          <option value = "{{row.Name}}", row lat = "{{row.Lattitude}}", row lon ="{{row.Longitude}}"  selected = "selected"> {{row.Name}}</option>
+          <option value = "{{row.Name}}", row_lat = "{{row.Lattitude}}", row_lon ="{{row.Longitude}}"  selected = "selected"> {{row.Name}}</option>
           {% endfor %}
         </select>
        
