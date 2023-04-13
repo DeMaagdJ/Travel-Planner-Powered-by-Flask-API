@@ -5,12 +5,12 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import datetime
 
-conn = sqlite3.connect("/Users/Justin/Documents/Bootcamp_Home folder/Project_3_JD/project3.db")
+conn = sqlite3.connect("./project3.db")
 conn.row_factory = sqlite3.Row
 
 #QUERY HOTEL DATA
 cur = conn.cursor()
-cur.execute("SELECT Name FROM hotels_geo")
+cur.execute("SELECT Name, Lattitude, Longitude FROM hotels_geo")
 Hotel = cur.fetchall()
 
 #QUERY AIRLINE DATA
@@ -26,6 +26,8 @@ Airline = cur2.fetchall()
 #for row in cur.fetchall():
     #time.append(row[0])
     #tvag_farh.append(row[1])
+    
+# CORS(app, resources={r"/*": {"origins": ["http://localhost:8001"]}})
 
 app = Flask(__name__)
 

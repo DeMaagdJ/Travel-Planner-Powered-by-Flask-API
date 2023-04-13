@@ -53,7 +53,7 @@ var get5Day = function (value) {
                         iconEl.classList.add("height: 64, width: 64");
                     }
                     else {
-                        iconEl.setAttribute("src", "./assets/images/icons/" + iconVal + ".svg");
+                        iconEl.setAttribute("src", "/static/images/icons/" + iconVal + ".svg");
                     }
 
                     x += 8
