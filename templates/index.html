@@ -125,18 +125,14 @@
       <h2 class="mb-3 text-dark col col1 col-lg col-md-12 col-sm-6 col-12"
         style="font-size:xx-large;font-weight: bolder;max-width: 18rem;" id="titleText">Flights</h2>
     </div>
-    <div class="row d-flex text-dark">
-      <div class="col-md-4">From: <input type="text"></div>
-      <div class="col-md-4">Departure: <input type="date"></div>
-      <div class="col-md-4">Return: <input type="date"></div>
-    </div>
     <div class="row d-flex justify-content-center">
       <div class="card text-dark mb-3 col col1 col-lg col-md-12 col-sm-6 col-12 p-2" style="max-width: 18rem;">
-        <div id="flight-price1" class="card-header text-dark"></div>
-        <div class="card-body">
-          <p id="flight-company1" class="card-text text-dark"></p>
-          <p id="flight-details1" class="card-text text-dark"></p>
-        </div>
+        <label for = "Flight Name"> Choose a Flight/Departure/Price:</label>
+        <select name="flightdata" id = 'flightdata'>
+          {% for row in Airline %}
+          <option value = data_airline = "{{row.Airline}}", data-depart = "{{row.Departure}}", data-price = "{{row.Price}}"> {{row.Airline}}, {{row.Departure}}, {{row.Price}} </option>
+          {% endfor %}
+        </select>
       </div>
 
       <div class="card text-dark mb-3 col col2 col-lg col-md-12 col-sm-6 col-12" style="max-width: 18rem;">
@@ -183,12 +179,10 @@
       <div class="card text-dark mb-3 col col1 col-lg col-md-12 col-sm-6 col-12 p-2" style="max-width: 18rem;">
         <label for = "Hotel Name"> Choose a hotel:</label>
         <select name="hoteldata" id = 'hoteldata'>
-          <option value = "1"> {{ result[0] }}   </option>
-          <option value = "2"> {{ result[1] }}   </option>
-          <option value = "3"> {{ result[2] }}   </option>
-          <option value = "4"> {{ result[3] }}   </option>
-          <option value = "5"> {{ result[4] }}   </option>
-          </select>
+          {% for row in Hotel %}
+          <option value = "{{row.Name}}"> {{row.Name}}</option>
+          {% endfor %}
+        </select>
        
         <div id="hotel-rating2" class="card-header text-dark"></div>
         <div class="card-body">
