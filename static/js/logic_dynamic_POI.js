@@ -38,7 +38,16 @@ function createMap(pointsOfInterest) {
     console.log(POIs)
     // Initialize an array to hold the markers.
     var touristSites = [];
-  
+    
+    var greenIcon = new L.Icon({
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
+
     // Loop through the POIs array.
     for (var index = 0; index < POIs.length; index++) {
       var site = POIs[index];
@@ -56,17 +65,34 @@ function createMap(pointsOfInterest) {
   }
   
   function findCity(response) {
+    
+    /*  NOT SURE HOW TO MAKE THIS CODE WORK
+    var selector = d3.select("#hoteldata")
+
+    d3.json(markerURL).then((data)) => {
+
+      let city_Lat = data.city_lat;
+      for( let lat = 0; i <10; i++){
+          let c_lat = city_lat[i]
+          selector.append.... 
+
+      }*/
+      let city_lon = data.city_lon;
+    }
+    var b =document.getElementById('hoteldata');
+    var city_lat = b.hotel_lat;
+    var city_lon = b.hotel_lon;
 
     //use response to find city coordinates
-    cityLat = response["results"][0]["lat"]
-    cityLon = response["results"][0]["lon"]
-    radius = 8000
+   // cityLat = response["results"][0]["lat"]
+    //cityLon = response["results"][0]["lon"]
+    radius = 25000
 
     categories = "tourism"
     limit = 200
     filters = `circle%3A${cityLon}%2C${cityLat}%2C${radius}`
     geoKey = "e36b93f065f8427b8961aa2d1de2d5b1"
-    //bias = `proximity:${cityLon},${cityLat}`
+    bias = `proximity:${city_Lon},${city_Lat}`
 
     params = {
       "categories":categories,

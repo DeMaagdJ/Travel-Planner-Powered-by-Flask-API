@@ -152,7 +152,7 @@
         <label for="Hotel Name">Choose a hotel:</label>
         <select name="hoteldata" id='hoteldata'>
           {% for row in hotels %}
-          <option hotelName="{{row.Name}}" , hotelAddress="{{row.Address}}">
+          <option hotelName="{{row.Name}}", hotel_lat = "{{row.Lattitude}}" selected = selected, hotel_lon ="{{row.Longitude}}" selected = selected, hotelAddress="{{row.Address}}">
             {{row.Name}}, {{row.Address}}
           </option>
           {% endfor %}
